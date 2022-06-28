@@ -1,0 +1,14 @@
+const String nameProgram = "Chương trình bán sách online";
+const String inforPaymentLabel = "Thông tin hoá đơn";
+const String clientName = "Tên khách hàng";
+const String clientNameHint = "Tên khách hàng";
+const String inforPaymenQuantity = "Số lượng sách";
+const String clientVip = "Khách hàng Vip";
+const String sumPaymentLabel = "Thành tiền:";
+const String btnSum = "Tính TT";
+const String btnNext = "Tiếp";
+const String btnInfo = "Thống kê";
+const String inforCard = "Thông tin thống kê";
+const String quantClient = "Tổng số KH";
+const String quantClientVip = "Tổng số KH là VIP";
+const String quanTurnOver = "Tổng doanh thu";
