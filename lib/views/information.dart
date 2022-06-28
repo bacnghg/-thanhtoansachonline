@@ -8,7 +8,7 @@ class Information extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text(inforPaymenQuantity),
+          title: Text(inforHoaDon),
           centerTitle: true,
         ),
         body: SingleChildScrollView(
@@ -28,14 +28,12 @@ class Information extends StatelessWidget {
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text(averageMark +
-                                    " : ${(averagePoint == null) ? "Chưa xác định" : averagePoint.toString()}"),
+                                Text(tongSoKHLabel),
                                 const SizedBox(
                                   height: 10,
                                 ),
-                                Text(adjustment +
-                                    " : " +
-                                    adjustmentResult.toString())
+                                Text(tongSoKHVipLabel),
+                                Text(tongDoanhThuLabel)
                               ],
                             ))),
                   ),
