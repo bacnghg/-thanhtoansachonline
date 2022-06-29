@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:statelessonpractice/resources/strings.dart';
 import 'package:statelessonpractice/resources/widgets/infor_widget.dart';
+import 'package:statelessonpractice/resources/widgets/thongke_widget.dart';
+import 'package:statelessonpractice/views/information.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -15,8 +17,24 @@ class _HomeScreenState extends State<HomeScreen> {
       litetureController;
   bool isChecked = false;
   int? tongtien;
+  int? tongsoKH;
+  int? tongsoKHVip;
+  int? tongDoanhThu;
+
+  @override
+  void initState() {
+    // Todo: impelement initState
+    super.initState();
+    nameKHController = TextEditingController();
+    soluongSachController = TextEditingController();
+    litetureController = TextEditingController();
+  }
+
   @override
   Widget build(BuildContext context) {
+    if (mounted) {
+      print("State đã tồn tại!");
+    }
     return Scaffold(
         appBar: AppBar(
           title: Text(nameProgram),
@@ -51,11 +69,9 @@ class _HomeScreenState extends State<HomeScreen> {
                   },
                   controlAffinity: ListTileControlAffinity.leading,
                 ),
-                InforWidget(
-                  textInfor: thanhTienLabel,
-                  inputInfor: tongtien.toString(),
-                  controller: soluongSachController,
-                ),
+                CheckInfor(
+                    textInforLabel: thanhTienLabel,
+                    textInforOutput: tongtien.toString()),
                 Container(
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -63,7 +79,17 @@ class _HomeScreenState extends State<HomeScreen> {
                       Expanded(
                         flex: 1,
                         child: ElevatedButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            setState(() {
+                              int? textToSendBack =
+                                  int.parse(soluongSachController!.text);
+                              if (textToSendBack != null) {
+                                print("Khởi chạy checked");
+                                tongtien = textToSendBack * 20000;
+                                print(tongtien);
+                              }
+                            });
+                          },
                           child: Text(btnSum),
                         ),
                       ),
@@ -84,6 +110,16 @@ class _HomeScreenState extends State<HomeScreen> {
                     ],
                   ),
                 ),
+                Text(inforthongKe),
+                CheckInfor(
+                    textInforLabel: tongSoKHLabel,
+                    textInforOutput: tongsoKH.toString()),
+                CheckInfor(
+                    textInforLabel: tongSoKHVipLabel,
+                    textInforOutput: tongsoKHVip.toString()),
+                CheckInfor(
+                    textInforLabel: tongDoanhThuLabel,
+                    textInforOutput: tongDoanhThu.toString())
               ])),
         ));
   }

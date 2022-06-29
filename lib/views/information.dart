@@ -7,10 +7,6 @@ class Information extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text(inforHoaDon),
-          centerTitle: true,
-        ),
         body: SingleChildScrollView(
             child: Container(
                 height: MediaQuery.of(context).size.height,
