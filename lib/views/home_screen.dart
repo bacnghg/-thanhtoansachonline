@@ -16,10 +16,10 @@ class _HomeScreenState extends State<HomeScreen> {
       soluongSachController,
       litetureController;
   bool isChecked = false;
-  int? tongtien;
-  int? tongsoKH;
-  int? tongsoKHVip;
-  int? tongDoanhThu;
+  int? tongtien = 0;
+  int? tongsoKH = 0;
+  int? tongsoKHVip = 0;
+  int? tongDoanhThu = 0;
 
   @override
   void initState() {
@@ -81,12 +81,15 @@ class _HomeScreenState extends State<HomeScreen> {
                         child: ElevatedButton(
                           onPressed: () {
                             setState(() {
+                              print(isChecked);
                               int? textToSendBack =
                                   int.parse(soluongSachController!.text);
                               if (textToSendBack != null) {
-                                print("Khởi chạy checked");
-                                tongtien = textToSendBack * 20000;
-                                print(tongtien);
+                                if (isChecked) {
+                                  tongtien = (textToSendBack * 2000 * 9);
+                                } else {
+                                  tongtien = (textToSendBack * 20000) as int?;
+                                }
                               }
                             });
                           },
@@ -103,7 +106,23 @@ class _HomeScreenState extends State<HomeScreen> {
                       Expanded(
                         flex: 1,
                         child: ElevatedButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            setState(() {
+                              print(tongsoKH);
+                              int? tongsoKHCheck = tongsoKH ?? 0;
+                              tongsoKH = tongsoKHCheck + 1;
+                              if (isChecked) {
+                                int? tongsoKHVipCheck = tongsoKHVip ?? 0;
+                                tongsoKHVip = tongsoKHVipCheck + 1;
+                              }
+                              int? tongDoanhThuCheck = tongDoanhThu ?? 0;
+                              int? tongtienCheck = tongtien ?? 0;
+                              tongDoanhThu = tongDoanhThuCheck + tongtienCheck;
+                              print(tongsoKH);
+                              print(tongsoKHVip);
+                              print(tongDoanhThu);
+                            });
+                          },
                           child: Text(btnInfo),
                         ),
                       ),
