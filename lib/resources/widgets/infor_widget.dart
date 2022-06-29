@@ -21,6 +21,7 @@ class InforWidget extends StatelessWidget {
         ),
         Expanded(
           child: TextField(
+            autofocus: true,
             decoration: InputDecoration(
               border: OutlineInputBorder(),
               hintText: inputInfor,

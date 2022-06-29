@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:statelessonpractice/resources/strings.dart';
 import 'package:statelessonpractice/resources/widgets/infor_widget.dart';
@@ -39,14 +41,24 @@ class _HomeScreenState extends State<HomeScreen> {
         appBar: AppBar(
           title: Text(nameProgram),
           centerTitle: true,
+          backgroundColor: Colors.green,
         ),
         body: SingleChildScrollView(
           child: Container(
               height: MediaQuery.of(context).size.height,
               width: MediaQuery.of(context).size.width,
-              padding: const EdgeInsets.only(right: 30, left: 30, top: 20),
+              padding: const EdgeInsets.only(right: 30, left: 30, top: 0),
               child: Column(children: [
-                Text(inforHoaDon, textAlign: TextAlign.left),
+                SizedBox(
+                  width: MediaQuery.of(context).size.width,
+                  child: Container(
+                    child: Text(
+                      inforHoaDon,
+                      textAlign: TextAlign.left,
+                    ),
+                    color: Colors.green,
+                  ),
+                ),
                 InforWidget(
                   textInfor: nameKhachHang,
                   inputInfor: nameKhachHangHint,
@@ -99,13 +111,6 @@ class _HomeScreenState extends State<HomeScreen> {
                       Expanded(
                         flex: 1,
                         child: ElevatedButton(
-                          onPressed: () {},
-                          child: Text(btnNext),
-                        ),
-                      ),
-                      Expanded(
-                        flex: 1,
-                        child: ElevatedButton(
                           onPressed: () {
                             setState(() {
                               print(tongsoKH);
@@ -118,12 +123,35 @@ class _HomeScreenState extends State<HomeScreen> {
                               int? tongDoanhThuCheck = tongDoanhThu ?? 0;
                               int? tongtienCheck = tongtien ?? 0;
                               tongDoanhThu = tongDoanhThuCheck + tongtienCheck;
-                              print(tongsoKH);
-                              print(tongsoKHVip);
-                              print(tongDoanhThu);
+                              nameKHController?.clear();
+                              soluongSachController?.clear();
                             });
                           },
-                          child: Text(btnInfo),
+                          child: Text(btnNext),
+                        ),
+                      ),
+                      Expanded(
+                        flex: 1,
+                        child: ElevatedButton(
+                          onPressed: () => showDialog<String>(
+                            context: context,
+                            builder: (BuildContext context) => AlertDialog(
+                              title: const Text('AlertDialog Title'),
+                              content: const Text('AlertDialog description'),
+                              actions: <Widget>[
+                                TextButton(
+                                  onPressed: () =>
+                                      Navigator.pop(context, 'Cancel'),
+                                  child: const Text('Cancel'),
+                                ),
+                                TextButton(
+                                  onPressed: () => Navigator.pop(context, 'OK'),
+                                  child: const Text('OK'),
+                                ),
+                              ],
+                            ),
+                          ),
+                          child: const Text(btnInfo),
                         ),
                       ),
                     ],
@@ -138,7 +166,41 @@ class _HomeScreenState extends State<HomeScreen> {
                     textInforOutput: tongsoKHVip.toString()),
                 CheckInfor(
                     textInforLabel: tongDoanhThuLabel,
-                    textInforOutput: tongDoanhThu.toString())
+                    textInforOutput: tongDoanhThu.toString()),
+                SizedBox(
+                  height: 20,
+                  child: const DecoratedBox(
+                    decoration: const BoxDecoration(color: Colors.red),
+                  ),
+                ),
+                SizedBox(
+                  height: 25,
+                  width: MediaQuery.of(context).size.width,
+                  child: Container(
+                    child: Text(""),
+                    color: Colors.green,
+                  ),
+                ),
+                IconButton(
+                    onPressed: () => showDialog<String>(
+                          context: context,
+                          builder: (BuildContext context) => AlertDialog(
+                            title: const Text('Confirm Logout'),
+                            content: const Text('Are you want logout?'),
+                            actions: <Widget>[
+                              TextButton(
+                                onPressed: () =>
+                                    Navigator.pop(context, 'Cancel'),
+                                child: const Text('Cancel'),
+                              ),
+                              TextButton(
+                                onPressed: () => Navigator.pop(context, 'OK'),
+                                child: const Text('OK'),
+                              ),
+                            ],
+                          ),
+                        ),
+                    icon: Icon(Icons.logout))
               ])),
         ));
   }
