@@ -51,11 +51,11 @@ class _HomeScreenState extends State<HomeScreen> {
               child: Column(children: [
                 SizedBox(
                   width: MediaQuery.of(context).size.width,
+                  height: 25,
                   child: Container(
-                    child: Text(
-                      inforHoaDon,
-                      textAlign: TextAlign.left,
-                    ),
+                    child: Text(inforHoaDon,
+                        textAlign: TextAlign.left,
+                        style: TextStyle(color: Colors.white)),
                     color: Colors.green,
                   ),
                 ),
@@ -106,11 +106,17 @@ class _HomeScreenState extends State<HomeScreen> {
                             });
                           },
                           child: Text(btnSum),
+                          style: ElevatedButton.styleFrom(
+                            primary: Colors.grey, // Background color
+                          ),
                         ),
                       ),
                       Expanded(
                         flex: 1,
                         child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            primary: Colors.grey, // Background color
+                          ),
                           onPressed: () {
                             setState(() {
                               print(tongsoKH);
@@ -152,12 +158,23 @@ class _HomeScreenState extends State<HomeScreen> {
                             ),
                           ),
                           child: const Text(btnInfo),
+                          style: ElevatedButton.styleFrom(
+                            primary: Colors.grey, // Background color
+                          ),
                         ),
                       ),
                     ],
                   ),
                 ),
-                Text(inforthongKe),
+                SizedBox(
+                  height: 25,
+                  width: MediaQuery.of(context).size.width,
+                  child: Container(
+                    child: Text(inforthongKe,
+                        style: TextStyle(color: Colors.white)),
+                    color: Colors.green,
+                  ),
+                ),
                 CheckInfor(
                     textInforLabel: tongSoKHLabel,
                     textInforOutput: tongsoKH.toString()),
